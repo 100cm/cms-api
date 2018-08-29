@@ -21,6 +21,12 @@ gem 'mina-puma'
 
 gem 'mysql2', '~>0.4.2'
 
+gem 'kaminari'
+
+gem 'carrierwave', '~> 1.0'
+
+gem 'devise'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
