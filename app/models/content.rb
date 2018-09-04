@@ -36,6 +36,10 @@ class Content < ApplicationRecord
 
       content = Content.find(content_id)
 
+      if (update_params[:cover].is_a?(String))
+        update_params.except!(:cover)
+      end
+
       res.raise_data_miss_error("content不存在") if content.blank?
 
       content.update_attributes!(update_params)
