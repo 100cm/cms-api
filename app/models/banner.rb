@@ -27,6 +27,9 @@ class Banner < ApplicationRecord
       update_params = params.require(:update).permit!
 
       banner = Banner.find(banner_id)
+      if(update_params[:image].is_a?(String))
+        update_params.except!(:image)
+      end
       res.raise_data_miss_error("banner不存在") if banner.blank?
       banner.update_attributes!(update_params)
     end
