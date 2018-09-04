@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  
+namespace :api do
+    resources :positions
+end
+
   namespace :api do
     resources :users do
       collection do
@@ -10,7 +15,11 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :banners
+    resources :banners do
+      collection do
+        post :delete_banner
+      end
+    end
   end
 
   namespace :api do

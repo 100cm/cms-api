@@ -73,9 +73,12 @@ class #{model} < ApplicationRecord
   def self.query_by_params(params)
     #{args} = nil
     response = Response.rescue do |res|
-      page, per, search_param = params[:page] || 1, params[:per] || 5, params[:search]
+      page, per, search_param = params[:page], params[:per] || 5, params[:search]
       search_param = {} if search_param.blank?
-      #{args} = #{model}.search_by_params(search_param).page(page).per(per)
+      #{args} = #{model}.search_by_params(search_param)
+      if page.present?
+        #{args} = #{args}.page(page).per(per)
+      end
     end
     return response, #{args}
   end

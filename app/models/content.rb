@@ -4,6 +4,10 @@ class Content < ApplicationRecord
 
   belongs_to :menu
 
+  mount_uploader :cover, FileUploader
+
+  default_scope { order(created_at: :asc) }
+
   def self.create_by_params(params)
     content  = nil
     response = Response.rescue do |res|
@@ -43,9 +47,12 @@ class Content < ApplicationRecord
   def self.query_by_params(params)
     contents = nil
     response = Response.rescue do |res|
-      page, per, search_param = params[:page] || 1, params[:per] || 5, params[:search]
+      page, per, search_param = params[:page], params[:per] || 5, params[:search]
       search_param            = {} if search_param.blank?
-      contents                = Content.eager_load(:menu).search_by_params(search_param).page(page).per(per)
+      contents                = Content.eager_load(:menu).search_by_params(search_param)
+      if page.present?
+        contents = contents.page(page).per(per)
+      end
     end
     return response, contents
   end

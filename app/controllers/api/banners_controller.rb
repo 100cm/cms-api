@@ -15,5 +15,9 @@ class Api::BannersController < ApplicationController
     @response = Banner.delete_by_params params
   end
 
+  def delete_banner
+    @response = Banner.delete_by_params params
+  end
+
 end
 
