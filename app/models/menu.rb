@@ -42,6 +42,7 @@ class Menu < ApplicationRecord
   def self.query_by_params(params)
     menus    = nil
     response = Response.rescue do |res|
+      search_param = params[:search]
       search_param = {} if search_param.blank?
       menus        = Menu.where(parent_id: nil).search_by_params(search_param)
     end
@@ -51,6 +52,7 @@ class Menu < ApplicationRecord
   def self.query_all_params(params)
     menus    = nil
     response = Response.rescue do |res|
+      search_param = params[:search]
       search_param = {} if search_param.blank?
       menus        = Menu.search_by_params(search_param)
     end
