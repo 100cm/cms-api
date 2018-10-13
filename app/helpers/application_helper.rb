@@ -22,7 +22,7 @@ module ApplicationHelper
       if value.present?
         value = value.to_time&.strftime('%F') if key.to_s == 'date' || key.to_s.include?('_date')
         # 兼容代码
-        value = value.to_time&.strftime('%F %H:%M') if key.to_s =~ /_at$/ || key.to_s =~ /_time$/
+        value = value.to_time&.strftime('%F %H:%M') if key.to_s =~ /_at$/
 
         # if (/^([a-zA-Z]+_)*id$/ =~ key).present? || key.to_s == 'whodunnit'
         #   if value.class == Array

@@ -25,14 +25,13 @@ class Position < ApplicationRecord
     response = Response.rescue do |res|
       user        = params[:user]
       position_id = params[:position_id]
-      res.raise_error("缺少参数") if position_id.blank?
       update_params = params.require(:update).permit!
-
       position = Position.find(position_id)
-
+      p position
       res.raise_data_miss_error("position不存在") if position.blank?
 
       position.update_attributes!(update_params)
+      p position
     end
     return response, position
   end

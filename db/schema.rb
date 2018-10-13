@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905074347) do
+ActiveRecord::Schema.define(version: 20181013011514) do
 
   create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -115,10 +115,10 @@ ActiveRecord::Schema.define(version: 20180905074347) do
     t.string   "age"
     t.string   "sex"
     t.text     "requirement", limit: 65535
-    t.string   "work_time"
+    t.text     "work_time",   limit: 65535
     t.string   "money"
     t.string   "location"
-    t.string   "benefit"
+    t.text     "benefit",     limit: 65535
     t.string   "contact"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
